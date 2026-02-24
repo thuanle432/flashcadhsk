@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flashcard HSK</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<h2>📚 Flashcard HSK</h2>
+
+<select id="hskSelect" onchange="changeHSK()">
+    <option value="hsk1">HSK 1</option>
+    <option value="hsk2">HSK 2</option>
+    <option value="hsk3">HSK 3</option>
+    <option value="hsk4">HSK 4</option>
+    <option value="hsk5">HSK 5</option>
+    <option value="hsk6">HSK 6</option>
+</select>
+
+<div class="card-container">
+    <div class="card" id="card">
+        <div class="card-face card-front" id="front"></div>
+        <div class="card-face card-back" id="back"></div>
+    </div>
+</div>
+
+<div class="controls">
+    <button onclick="prevCard()">⬅ Prev</button>
+    <button onclick="randomCard()">🎲 Random</button>
+    <button onclick="nextCard()">Next ➡</button>
+</div>
+<script src="script.js"></script>
+
+</body>
+</html>
