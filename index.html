@@ -1,38 +1,98 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flashcard HSK</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard HSK</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<h2>📚 Flashcard HSK</h2>
+    <header class="topbar">
+        <h1>Flashcard HSK</h1>
+        <nav class="nav">
+            <button class="nav-btn" data-page="home">Trang chính</button>
+            <button class="nav-btn" data-page="write">Viết từ</button>
+            <button class="nav-btn" data-page="response">Response</button>
+        </nav>
+    </header>
 
-<select id="hskSelect" onchange="changeHSK()">
-    <option value="hsk1">HSK 1</option>
-    <option value="hsk2">HSK 2</option>
-    <option value="hsk3">HSK 3</option>
-    <option value="hsk4">HSK 4</option>
-    <option value="hsk5">HSK 5</option>
-    <option value="hsk6">HSK 6</option>
-</select>
+    <main class="container">
 
-<div class="card-container">
-    <div class="card" id="card">
-        <div class="card-face card-front" id="front"></div>
-        <div class="card-face card-back" id="back"></div>
-    </div>
-</div>
+        <section id="home" class="page">
+            <div class="controls-row">
+                <label for="hskSelect">Chọn trình độ:</label>
+                <select id="hskSelect" onchange="changeHSK()">
+                    <option value="hsk1">HSK 1</option>
+                    <option value="hsk2">HSK 2</option>
+                    <option value="hsk3">HSK 3</option>
+                </select>
+            </div>
 
-<div class="controls">
-    <button onclick="prevCard()">⬅ Prev</button>
-    <button onclick="randomCard()">🎲 Random</button>
-    <button onclick="nextCard()">Next ➡</button>
-</div>
-<script src="script.js"></script>
+            <div class="card-container">
+                <div class="card" id="card">
+                    <div class="card-face card-front" id="front"></div>
+                    <div class="card-face card-back" id="back"></div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="prevCard()">⬅ Prev</button>
+                <button onclick="randomCard()">🎲 Random</button>
+                <button onclick="nextCard()">Next ➡</button>
+                <button id="useAsTarget">Sử dụng làm từ kiểm tra</button>
+            </div>
+        </section>
+
+        <section id="write" class="page" style="display:none">
+            <h2>Viết từ — Kiểm tra độ đúng</h2>
+            <p>Hiển thị: tiếng Việt, bạn nhập tiếng Trung ở ô bên dưới để kiểm tra.</p>
+
+            <div class="form-row">
+                <label>Tuỳ chọn:</label>
+                <label><input type="checkbox" id="randomFromHSK" checked> Random từ HSK</label>
+                <label><input type="checkbox" id="autoNext" checked> Tự chuyển sau kiểm tra</label>
+                <button id="nextRandomBtn">Next random</button>
+            </div>
+
+            <div class="form-row">
+                <label>Hiển thị:</label>
+                <label><input type="checkbox" id="showHanzi"> Hán tự</label>
+                <label><input type="checkbox" id="showPinyin"> Pinyin</label>
+                <label><input type="checkbox" id="showMeaning" checked> Tiếng Việt</label>
+            </div>
+            
+            <div class="form-row">
+                <label>Từ gốc (Trung):</label>
+                <div id="targetDisplay" class="target-display">—</div>
+            </div>
+
+            <div id="writeInfo" class="form-row">
+                <div><strong>Ý nghĩa (Tiếng Việt):</strong> <span id="writeMeaning"></span></div>
+                <div><strong>Pinyin:</strong> <span id="writePinyin"></span></div>
+            </div>
+
+            <div class="form-row">
+                <label for="userInput">Bạn viết (nhập tiếng Trung):</label>
+                <input id="userInput" placeholder="Gõ ở đây...">
+            </div>
+
+            <div class="form-row">
+                <button id="checkBtn">Kiểm tra</button>
+                <div id="result" class="result"></div>
+            </div>
+        </section>
+
+        <section id="response" class="page" style="display:none">
+            <h2>Response — Lịch sử kiểm tra</h2>
+            <div id="responsesList">Chưa có phản hồi nào.</div>
+            <button id="clearResponses">Xóa lịch sử</button>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
